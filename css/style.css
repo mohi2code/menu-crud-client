@@ -1,0 +1,15 @@
+main {
+    width: 100%;
+    height: 100vh;
+}
+
+aside {
+    position: fixed;
+    width: 20%;
+    height: 100vh;
+}
+
+main section {
+    width: 80%;
+    margin-left: 20%;
+}
