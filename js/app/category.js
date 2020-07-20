@@ -1,10 +1,11 @@
 const foodDiv = document.querySelector('#food');
+const category_id = getIdFromQuery();
 
-getFood()
+getFoodByCategoryId(category_id)
     .then(data => showFood(data));
 
-function getFood() {
-    return fetch(`${API_URL}/food`)
+function getFoodByCategoryId(id) {
+    return fetch(`${API_URL}/categories/${id}`)
         .then(res => res.json());
 }
 
