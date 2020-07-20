@@ -21,10 +21,11 @@ function showFood(food) {
                     <h4 class="card-title mb-3">${foodItem.name}</h4>
                     <p class="card-text mb-2">${foodItem.description}</p>
                     <p><small>Category</small> : <strong><a
-                                href="/category.html?id=${foodItem.category_id}">${foodItem.category_name}</a></strong>
+                                href="/category.html?id=${foodItem.category_id}&category_name=${foodItem.category_name}">${foodItem.category_name}</a></strong>
                         <p><small>Price</small> : <strong>$${foodItem.price}</strong>
                         </p>
                     </p>
+                    <a href="/food.html?id=${foodItem.id}" class="btn btn-outline-info mt-3">Details</a>
                 </div>
             </div>
         </div>

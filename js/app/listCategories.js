@@ -14,8 +14,13 @@ function showCategories(categories) {
         categoriesUl.appendChild(li);
         li.outerHTML = `
         <li>
-            <a href="category.html?id=${category.id}">${category.name}</a>
+            <a href="category.html?id=${category.id}&category_name=${category.name}">${category.name}</a>
         </li>
         `;
     });
+    const li = document.createElement('li');
+    categoriesUl.appendChild(li);
+    li.innerHTML = `
+        <a href="/newCategory.html" class="btn btn-outline-success w-50">Add</a>
+    `;
 }

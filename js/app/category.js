@@ -1,4 +1,6 @@
 const foodDiv = document.querySelector('#food');
+const categoryName = document.querySelector('#category-name');
+const editCategoryButton = document.querySelector('#edit-category');
 const category_id = getIdFromQuery();
 
 getFoodByCategoryId(category_id)
@@ -10,6 +12,10 @@ function getFoodByCategoryId(id) {
 }
 
 function showFood(food) {
+    categoryName.textContent = getCategoryFromQuery();
+    editCategoryButton.outerHTML = `
+        <a href="/editCategory.html?id=${category_id}" class="btn btn-outline-warning">Edit</a>
+    `;
     food.forEach(foodItem => {
         const div = document.createElement('div');
         foodDiv.appendChild(div);
@@ -21,11 +27,11 @@ function showFood(food) {
                 <div class="card-body">
                     <h4 class="card-title mb-3">${foodItem.name}</h4>
                     <p class="card-text mb-2">${foodItem.description}</p>
-                    <p><small>Category</small> : <strong><a
-                                href="/category.html?id=${foodItem.category_id}">${foodItem.category_name}</a></strong>
+                    <p>
                         <p><small>Price</small> : <strong>$${foodItem.price}</strong>
                         </p>
                     </p>
+                    <a href="/food.html?id=${foodItem.id}" class="btn btn-outline-info mt-3">Details</a>
                 </div>
             </div>
         </div>
