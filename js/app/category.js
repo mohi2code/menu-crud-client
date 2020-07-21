@@ -1,6 +1,7 @@
 const foodDiv = document.querySelector('#food');
 const categoryName = document.querySelector('#category-name');
 const editCategoryButton = document.querySelector('#edit-category');
+const deleteCategoryButton = document.querySelector('#delete-category');
 const category_id = getIdFromQuery();
 
 getFoodByCategoryId(category_id)
@@ -38,3 +39,12 @@ function showFood(food) {
         `;
     });
 }
+
+// Delete Category
+deleteCategoryButton.addEventListener('click', e => {
+    fetch(`${API_URL}/categories/${getIdFromQuery()}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => window.location = '/index.html')
+});
