@@ -30,9 +30,21 @@ function showFood(food) {
                     </p>
                     <div class="text-white mt-4">
                         <a href="/editFood.html?id=${food_id}" class="btn btn-warning text-white">Edit</a>
-                        <a class="btn btn-danger">Delete</a>
+                        <button type="button" class="btn btn-danger"
+                                data-toggle="modal" data-target="#exampleModal">
+                                Delete
+                        </button>
                     </div>
                 </div>
             </div>
         `;
 }
+
+// Delete Food 
+document.querySelector('#delete-food').addEventListener('click', e => {
+    fetch(`${API_URL}/food/${getIdFromQuery()}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => window.location = '/index.html')
+});
