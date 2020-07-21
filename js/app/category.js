@@ -14,7 +14,7 @@ function getFoodByCategoryId(id) {
 function showFood(food) {
     categoryName.textContent = getCategoryFromQuery();
     editCategoryButton.outerHTML = `
-        <a href="/editCategory.html?id=${category_id}" class="btn btn-outline-warning">Edit</a>
+        <a href="/editCategory.html?id=${category_id}&category_name=${getCategoryFromQuery()}" class="btn btn-outline-warning">Edit</a>
     `;
     food.forEach(foodItem => {
         const div = document.createElement('div');
