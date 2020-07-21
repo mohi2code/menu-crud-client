@@ -8,8 +8,8 @@ form.addEventListener('submit', e => {
     const name = formData.get('name');
     const description = formData.get('description');
     const category_id = formData.get('category_id');
-    const price = formData.get('price');
-    const calories = formData.get('calories');
+    const price = Number.parseFloat(formData.get('price'));
+    const calories = Number.parseFloat(formData.get('calories'));
     const image = formData.get('image');
 
     const foodData = {
