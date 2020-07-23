@@ -1,4 +1,4 @@
-API_URL = 'http://localhost:3000';
+API_URL = 'http://37.148.210.8:3000';
 
 function getIdFromQuery() {
     return window.location.search.match(/\?id=([0-9a-zA-Z\-]+)/)[1];
