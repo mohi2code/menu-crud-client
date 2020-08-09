@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import Dashboard from './Dashboard';
+import Register from './Register';
+import Login from './Login';
 
-function App() {
+export default function App() {
+  const [token, setToken] = useState(localStorage.getItem('token'));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          {token ? <Dashboard /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="register">
+          <Register />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
-
-export default App;
