@@ -5,12 +5,13 @@ import {
     Col,
     Button
 } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import './components/main_layout.scss';
 import NewFormWrap from './components/NewFormWrap';
 
-export default function NewFood(props) {
+export default function EditFood(props) {
+    const [id, setid] = useState(useParams().id);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [categoryId, setCategoryId] = useState('');
@@ -19,6 +20,32 @@ export default function NewFood(props) {
     const [image, setImage] = useState('');
 
     const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        axios.get(`${props.API_URL}/food/${id}`, {
+            headers: {
+                authorization: `Bearer ${props.token}`
+            }
+        })
+            .then(res => {
+                if (res.status == 200) {
+                    setName(res.data.name);
+                    setDescription(res.data.description);
+                    setCategoryId(res.data.category_id);
+                    setPrice(res.data.price);
+                    setCalories(res.data.calories);
+                    setImage(res.data.image);
+                }
+            })
+            .catch(err => {
+                if (err.response.status == 401) {
+                    props.setToken('');
+                    window.location = "/";
+                } else {
+                    console.error(err.response.data);
+                }
+            });
+    }, []);
 
     useEffect(() => {
         axios.get(`${props.API_URL}/categories`, {
@@ -52,7 +79,7 @@ export default function NewFood(props) {
             image: image.trim(),
         }
 
-        axios.post(`${props.API_URL}/food`, body, {
+        axios.put(`${props.API_URL}/food/${id}`, body, {
             headers: {
                 authorization: `Bearer ${props.token}`
             }
@@ -77,7 +104,7 @@ export default function NewFood(props) {
                 <main>
                     <div className="p-5">
                         <NewFormWrap>
-                            <h3 className="text-center">Add New Food</h3>
+                            <h3 className="text-center">Edit Food</h3>
                             <Form onSubmit={submit}>
                                 <Form.Row>
                                     <Form.Group as={Col} controlId="name">
@@ -104,7 +131,7 @@ export default function NewFood(props) {
                                 <Form.Row>
                                     <Form.Group as={Col} controlId="category">
                                         <Form.Label>Category</Form.Label>
-                                        <Form.Control as="select" defaultValue="..." onChange={(e) => setCategoryId(e.target.value)}>
+                                        <Form.Control as="select" value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
                                             <option>...</option>
                                             {categories.map(category => {
                                                 return <option key={category.id} value={category.id}>{category.name}</option>
@@ -119,7 +146,7 @@ export default function NewFood(props) {
                                 </Form.Row>
 
                                 <Button variant="primary" type="submit">
-                                    Submit
+                                    save
                                 </Button>
                             </Form>
                         </NewFormWrap>

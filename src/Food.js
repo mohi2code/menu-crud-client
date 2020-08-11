@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import {
     Card,
+    Button
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
@@ -13,7 +14,6 @@ export default function Dashboard(props) {
     const [food, setFood] = useState({});
 
     useEffect(() => {
-        console.log(id);
         axios.get(`${props.API_URL}/food/${id}`, {
             headers: {
                 authorization: `Bearer ${props.token}`
@@ -30,7 +30,26 @@ export default function Dashboard(props) {
                     console.error(err.response.data);
                 }
             });
-    }, [])
+    }, []);
+
+    const deleteFood = useCallback((e) => {
+        axios.delete(`${props.API_URL}/food/${id}`, {
+            headers: {
+                authorization: `Bearer ${props.token}`
+            }
+        })
+            .then(res => {
+                if (res.status == 200)
+                    window.location = "/";
+            })
+            .catch(err => {
+                if (err.response.status == 401) {
+                    props.setToken('');
+                } else {
+                    console.error(err.response.data);
+                }
+            });
+    }, []);
 
     return (
         <div id="dashboard" className="w-100 h-100">
@@ -48,8 +67,8 @@ export default function Dashboard(props) {
                                     <span className="d-block"><span className="font-weight-bolder">calories: </span>{food.calories} CAL</span>
                                 </Card.Text>
                                 <div className="d-flex">
-                                    <Link to={`/food/edit/${food.id}`} className="btn btn-warning">Edit</Link>
-                                    <Link to={`/food/${food.id}`} className="ml-3 btn btn-outline-danger">Delete</Link>
+                                    <Link to={`/editFood/${food.id}`} className="btn btn-warning">Edit</Link>
+                                    <Button onClick={deleteFood} variant="outline-danger" className="ml-3">Delete</Button>
                                 </div>
                             </Card.Body>
                         </Card>
