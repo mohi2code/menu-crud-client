@@ -1,0 +1,15 @@
+#login .login-form-wrap {
+    padding: 2.5rem;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+}
+
+#login .login-form-wrap button {
+    background-color: var(--primary);
+}
+
+@media (max-width: 760px) {
+    #login .login-form-wrap {
+        height: 100vh;
+    }
+}

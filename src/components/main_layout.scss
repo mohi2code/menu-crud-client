@@ -1,0 +1,38 @@
+@import "../custom";
+
+.main_layout {
+
+    .sidebar {
+        position: fixed;
+        height: 100vh;
+        width: $sidebar-width;
+        background-color: $dark;
+        color: $light;
+
+        .sidebar-header {
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            font-size: 30px;
+            text-align: center;
+            border-bottom: 1px solid #c5cae910;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            padding: .5rem;
+
+            a {
+                text-decoration: none;
+                color: rgba(214, 214, 214, 0.603);
+            }
+        }
+    }
+
+    main {
+        padding-left: $sidebar-width;
+    }
+}

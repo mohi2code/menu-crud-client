@@ -1,2 +1,21 @@
+@import url(https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;600&display=swap);
+
+@import "./custom";
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    background-color: $light;
+
+    #root {
+        height: 100%;
+    }
+}
+
+h1, h2, h3, h4, h5 h6, a, button {
+    font-family: 'Poppins', sans-serif;
+}
 
