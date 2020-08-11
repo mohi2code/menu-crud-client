@@ -76,7 +76,7 @@ export default function App() {
           <NewFood API_URL={API_URL} token={token} setToken={adjustToken} categories={categories} />
         </Route>
         <Route path="/food/:id">
-          <Food />
+          <Food API_URL={API_URL} token={token} setToken={setToken} categories={categories} />
         </Route>
       </Switch>
     </Router>
