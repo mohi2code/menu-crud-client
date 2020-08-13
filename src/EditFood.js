@@ -65,7 +65,7 @@ export default function EditFood(props) {
                     console.error(err.response.data);
                 }
             });
-    }, [])
+    }, []);
 
     const submit = useCallback((e) => {
         e.preventDefault();

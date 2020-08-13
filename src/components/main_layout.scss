@@ -4,6 +4,7 @@
 
     .sidebar {
         position: fixed;
+        z-index: 1;
         height: 100vh;
         width: $sidebar-width;
         background-color: $dark;
@@ -35,4 +36,26 @@
     main {
         padding-left: $sidebar-width;
     }
+}
+
+@media (max-width: 760px) {
+    .main_layout {
+        .sidebar {
+            display: none;
+            width: 0 ;
+        }
+
+        main {
+            padding-left: 0;
+
+            #navbar .hamburger {
+                display: flex !important;
+            }
+        }
+    }
+}
+
+.show {
+    display: block !important;
+    width: $sidebar-width !important;
 }

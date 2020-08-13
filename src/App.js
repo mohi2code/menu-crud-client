@@ -12,6 +12,9 @@ import Login from './Login';
 import NewFood from "./NewFood";
 import Food from './Food';
 import EditFood from './EditFood';
+import NewCategory from './NewCategory';
+import Category from './Category';
+import EditCategory from './EditCategory';
 
 export default function App() {
   const API_URL = 'http://localhost:3000';
@@ -81,6 +84,16 @@ export default function App() {
         </Route>
         <Route path="/editFood/:id">
           <EditFood API_URL={API_URL} token={token} setToken={setToken} categories={categories} />
+        </Route>
+
+        <Route path="/newCategory">
+          <NewCategory API_URL={API_URL} token={token} setToken={adjustToken} categories={categories} />
+        </Route>
+        <Route path="/categories/:id">
+          <Category API_URL={API_URL} token={token} setToken={setToken} categories={categories} />
+        </Route>
+        <Route path="/editCategory/:id">
+          <EditCategory API_URL={API_URL} token={token} setToken={setToken} categories={categories} />
         </Route>
       </Switch>
     </Router>

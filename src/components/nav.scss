@@ -1,0 +1,53 @@
+@import "../custom";
+
+$ham-color: #6f57beb4;
+
+@mixin ham-line($color) {
+    content: " ";
+    height: 2px;
+    width: 100%;
+    background-color: $color;
+}
+
+#navbar {
+    height: 75px;
+    background-color: $darker;
+    color: whitesmoke;
+
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 40px;
+        height: 90%;
+        padding: .5rem;
+        border: 2px solid $ham-color;
+
+        .l1{
+            @include ham-line($ham-color);
+        }
+        .l2{
+            @include ham-line($ham-color);
+
+        }
+        .l3{
+            @include ham-line($ham-color);
+        }
+    }
+
+    .hamburger:hover {
+        $color: whitesmoke;
+        border: 2px solid $color;
+        .l1{
+            @include ham-line($color);
+        }
+        .l2{
+            @include ham-line($color);
+
+        }
+        .l3{
+            @include ham-line($color);
+        }        
+    }
+}
+
