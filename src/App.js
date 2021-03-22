@@ -17,7 +17,7 @@ import Category from './Category';
 import EditCategory from './EditCategory';
 
 export default function App() {
-  const API_URL = 'http://localhost:3000';
+  const API_URL = 'https://menu-crud.herokuapp.com';
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [categories, setCategories] = useState([]);
   const [food, setFood] = useState([]);
